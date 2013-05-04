@@ -1,0 +1,6 @@
+#!/bin/bash
+
+IMG=$(./lib/docker-build < Changefile)
+
+echo "HEEEE"
+echo $IMG

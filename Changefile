@@ -1,0 +1,16 @@
+# VERY IMPORTANTLY this file is TAB delimited
+from	ubuntu:12.10
+run		echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
+run		apt-get update
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q git curl
+copy	content/git-wrapper			/usr/local/bin/git
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python2.7
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential python-dev python-distribute python-pip
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms1-dev libwebp-dev libtiff-dev
+run		pip install --upgrade pip
+#
+# Local Variables:
+# indent-tabs-mode: t
+# whitespace-style: (face tabs)
+# eval: (whitespace-mode t)
+# End:
