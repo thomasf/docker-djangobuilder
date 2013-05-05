@@ -1,4 +1,4 @@
-# VERY IMPORTANTLY this file is TAB delimited
+# VERY IMPORTANT: this file is TAB delimited
 #
 #
 # base
@@ -9,13 +9,15 @@ run		apt-get update
 run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q git curl
 copy	content/git-wrapper			/usr/local/bin/git
 copy	content/app	/usr/local/bin/app
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python2.7
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential python-dev python-distribute python-pip
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python python-distribute python-pip
+# To be able to build packages from C source
+run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-dev build-essential
+# Required for building pillow
 run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms1-dev libwebp-dev libtiff-dev
 run		pip install --upgrade pip
 #
 # django
-#
+# FIXME: should not be preinstalled
 run		pip install django uwsgi
 
 
