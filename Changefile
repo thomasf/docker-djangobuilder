@@ -4,27 +4,41 @@
 # base
 #
 from	ubuntu:12.10
-run		echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
-run		apt-get update
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q git curl
-copy	content/git-wrapper			/usr/local/bin/git
-copy	content/app	/usr/local/bin/app
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python python-distribute python-pip
-# To be able to build packages from C source
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-dev build-essential
+maintainer	Thomas Frössman <thomasf@josysstem.se>
+run	echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
+run	apt-get update
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q git && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q curl && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q python && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-distribute && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-pip && apt-get clean
 # Required for building pillow
-run		DEBIAN_FRONTEND=noninteractive apt-get install -y -q libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms1-dev libwebp-dev libtiff-dev
-run		pip install --upgrade pip
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libjpeg8-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q zlib1g-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libfreetype6-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q liblcms1-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libwebp-dev && apt-get clean
+run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libtiff-dev && apt-get clean
+# Upgrade pip
+run	pip install --upgrade pip
 #
 # django
 # FIXME: should not be preinstalled
-run		pip install django uwsgi
+# run	pip install django uwsgi 
+copy	content/git-wrapper	/usr/local/bin/git
+copy	content/app	/usr/local/bin/app
+run	echo "cd /var/django-app/" >> /.bash_rc
+expose	8000
+cmd	["/usr/local/bin/app" "run"]
+
 
 
 
 #
 # Local Variables:
 # indent-tabs-mode: t
-# whitespace-style: (face tabs)
+# whitespace-style: (face tabs tab-mark)
 # eval: (whitespace-mode t)
 # End:
