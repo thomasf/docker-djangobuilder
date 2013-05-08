@@ -9,7 +9,7 @@
 from	ubuntu:12.10
 maintainer	Thomas Frössman <thomasf@josysstem.se>
 run	echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
-run	apt-get update
+run	DEBIAN_FRONTEND=noninteractive apt-get update
 run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q git && apt-get clean
 run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q curl && apt-get clean
 run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential && apt-get clean
@@ -25,7 +25,7 @@ run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q liblcms1-dev && apt-get
 run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libwebp-dev && apt-get clean
 run	DEBIAN_FRONTEND=noninteractive apt-get install -y -q libtiff-dev && apt-get clean
 # Upgrade pip
-run	pip install --upgrade pip
+run	pip --no-input --exists-action=s install --upgrade pip
 #
 # django
 # FIXME: should not be preinstalled
