@@ -1,3 +1,6 @@
+# Django base
+# VERSION				0.0.1
+# DOCKER-VERSION		0.3
 # VERY IMPORTANT: this file is TAB delimited
 #
 #
