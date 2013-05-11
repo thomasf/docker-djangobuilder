@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+
 IMG=$(docker build < Dockerfile)
 
-echo -e $IMG
+echo ${IMG}
+
