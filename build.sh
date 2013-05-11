@@ -1,8 +1,8 @@
-#!/bin/sh
-
+#!/bin/bash
 set -e
 
-IMG=$(docker build < Dockerfile)
-
-echo ${IMG}
-
+docker build < Dockerfile
+echo ""
+echo 'suggestion:'
+echo ' docker ps -a'
+echo ' docker commit CONTAINERID 23c/ubuntu-12.10-django'
