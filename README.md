@@ -1,8 +1,10 @@
 # Docker django image builder
 
-WIP
+This is an experimental repo until docker and its builder is stable.
 
-## DRAFT DRAFT DRAFT Django app workflow DRAFT DRAFT DRAFT
+This work will probably be merged into https://github.com/23critters/23c-django-project-template/ later on.
+
+## DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT
 
 build base image
 
